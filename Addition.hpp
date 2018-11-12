@@ -18,6 +18,7 @@ public:
         second_operand_ = number_generator_->Get();
         result_ = first_operand_ + second_operand_;
     }
+
 private:
     NumberGenerator * number_generator_;
 };

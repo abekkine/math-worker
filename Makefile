@@ -1,4 +1,4 @@
-TARGET = ops3
+TARGET = ops
 SOURCES = $(wildcard *.cpp)
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

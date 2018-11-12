@@ -9,12 +9,11 @@
 
 enum OperationIdentifier {
     OPID_BEGIN = 0,
-    OPID_None = 0,
-    OPID_Addition = 1,
-    OPID_Subtraction = 2,
-    OPID_Multiplication = 3,
-    OPID_Division = 4,
-    OPID_END = 4,
+    OPID_Addition = 0,
+    OPID_Subtraction = 1,
+    OPID_Multiplication = 2,
+    OPID_Division = 3,
+    OPID_END = 3,
 };
 
 enum QuestionType {
@@ -59,23 +58,29 @@ public:
         if (type_ == QT_Operator) {
             isCorrect = (answer == operator_symbol_);
         } else {
-            int value = std::stoi(answer);
-            int number;
-            switch (type_) {
-            case QT_FirstOperand:
-                number = first_operand_;
-                break;
-            case QT_SecondOperand:
-                number = second_operand_;
-                break;
-            case QT_Result:
-                number = result_;
-                break;
-            default:
-                throw std::string("Invalid question type!");
-                break;
+            int value;
+            try {
+                value = std::stoi(answer);
+                int number;
+                switch (type_) {
+                case QT_FirstOperand:
+                    number = first_operand_;
+                    break;
+                case QT_SecondOperand:
+                    number = second_operand_;
+                    break;
+                case QT_Result:
+                    number = result_;
+                    break;
+                default:
+                    throw std::string("Invalid question type!");
+                    break;
+                }
+                isCorrect = (value == number);
             }
-            isCorrect = (value == number);
+            catch (std::invalid_argument) {
+                std::cerr << "Not a number!\n";
+            }
         }
         return isCorrect;
     }

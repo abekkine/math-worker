@@ -1,13 +1,14 @@
 #include "Operation.hpp"
 #include "Addition.hpp"
+#include "Multiplication.hpp"
 #include "OperationLog.hpp"
 #include "UserStats.hpp"
 #include "UserRecord.hpp"
+#include "NumberGenerator.hpp"
 
 #include <iostream>
 
 void getAnswer(std::string & answer) {
-
 
     answer = std::string();
 
@@ -21,7 +22,27 @@ int getUserId() {
 
 Operation * getRandomQuestion() {
 
-    return new Addition();
+    NumberGenerator gen(OPID_BEGIN, OPID_END);
+    Operation * op = 0;
+
+    OperationIdentifier operation_id = static_cast<OperationIdentifier>(gen.Get());
+    switch(operation_id) {
+    case OPID_Addition:
+    case OPID_Subtraction:
+        op = new Addition();
+        break;
+
+    case OPID_Division:
+    case OPID_Multiplication:
+        op = new Multiplication();
+        break;
+
+    default:
+        throw std::string("Invalid operation identifier!");
+        break;
+    }
+
+    return op;
 }
 
 int main() {
