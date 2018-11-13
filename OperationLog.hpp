@@ -1,5 +1,5 @@
-#ifndef OPERATION_LOG_H_
-#define OPERATION_LOG_H_
+#ifndef OPERATION_LOG_HPP_
+#define OPERATION_LOG_HPP_
 
 class OperationLog {
 public:
@@ -22,4 +22,4 @@ public:
     // Timestamp, User, OperationIdentifier, QuestionType, UserAnswer, FirstOperand, SecondOperand, Result
 };
 
-#endif // OPERATION_LOG_H_
+#endif // OPERATION_LOG_HPP_

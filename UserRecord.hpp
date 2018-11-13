@@ -1,5 +1,5 @@
-#ifndef USER_RECORD_H_
-#define USER_RECORD_H_
+#ifndef USER_RECORD_HPP_
+#define USER_RECORD_HPP_
 
 class UserRecord {
     // Record format :
@@ -28,4 +28,4 @@ public:
     ~UserRecord() {}
 };
 
-#endif // USER_RECORD_H_
+#endif // USER_RECORD_HPP_

@@ -1,6 +1,8 @@
 #include "Operation.hpp"
 #include "Addition.hpp"
+#include "Subtraction.hpp"
 #include "Multiplication.hpp"
+#include "Division.hpp"
 #include "OperationLog.hpp"
 #include "UserStats.hpp"
 #include "UserRecord.hpp"
@@ -28,11 +30,17 @@ Operation * getRandomQuestion() {
     OperationIdentifier operation_id = static_cast<OperationIdentifier>(gen.Get());
     switch(operation_id) {
     case OPID_Addition:
-    case OPID_Subtraction:
         op = new Addition();
         break;
 
+    case OPID_Subtraction:
+        op = new Subtraction();
+        break;
+
     case OPID_Division:
+        op = new Division();
+        break;
+
     case OPID_Multiplication:
         op = new Multiplication();
         break;
@@ -62,14 +70,21 @@ int main() {
         op = getRandomQuestion();
         op->Render();
         getAnswer(answer);
-        if (op->CheckAnswer(answer)) {
-            // Answer is correct.
-            std::cout << "Correct!\n";
-        } else {
-            // Answer is incorrect.
-            std::cout << "Incorrect!\n";
-            // Log operation details.
-            log.AddLogLine(user_id, answer, op);
+        if (answer[0] != 'q') {
+            if (op->CheckAnswer(answer)) {
+                // Answer is correct.
+                std::cout << "Correct!\n";
+            } else {
+                // Answer is incorrect.
+                std::cout << "Incorrect!\n";
+                // Show correct solution :
+                op->ShowAnswer();
+                // Log operation details.
+                log.AddLogLine(user_id, answer, op);
+            }
+        }
+        else {
+            quit = true;
         }
     }
 

@@ -1,5 +1,5 @@
-#ifndef USER_STATS_H_
-#define USER_STATS_H_
+#ifndef USER_STATS_HPP_
+#define USER_STATS_HPP_
 
 #include "UserRecord.hpp"
 
@@ -21,4 +21,4 @@ public:
     }
 };
 
-#endif // USER_STATS_H_
+#endif // USER_STATS_HPP_

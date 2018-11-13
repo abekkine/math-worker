@@ -1,5 +1,5 @@
-#ifndef NUMBER_GENERATOR_H_
-#define NUMBER_GENERATOR_H_
+#ifndef NUMBER_GENERATOR_HPP_
+#define NUMBER_GENERATOR_HPP_
 
 #include <random>
 
@@ -27,4 +27,4 @@ private:
     std::uniform_int_distribution<int> distribution_min_max_;
 };
 
-#endif // NUMBER_GENERATOR_H_
+#endif // NUMBER_GENERATOR_HPP_
